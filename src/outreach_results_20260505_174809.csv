@@ -1,0 +1,19 @@
+name,email,industry,website,subject,body,status,generated_at,sent_at,error
+Lena Torres,lena@growthloop.io,B2B SaaS,growthloop.io,ERROR,,failed,2026-05-05T17:47:44.780809,,"Could not parse JSON from model response: Unterminated string starting at: line 2 column 12 (char 13)
+Raw response:
+{
+""subject"": ""Partnering to accelerate GrowthLoop’s revenue"
+Marcus Webb,marcus@finflux.com,Fintech,finflux.com,ERROR,,failed,2026-05-05T17:47:52.938667,,"Could not parse JSON from model response: Unterminated string starting at: line 1 column 65 (char 64)
+Raw response:
+{""subject"":""Quick idea for Finflux’s partnership growth"",""body"":""Hi Marcus,\n\nI’ve been following Finflux’s expansion in real‑time payments for fintechs, and I noticed your recent launch of the peer‑to‑peer API—great move.\n\nAt Acme Corp, we specialize in channel partnerships that help SaaS firms boost qualified pipeline by an average 30% in 90 days. I’d love to explore how a partnership could accelerate Finflux’s growth.\n\nDo you have 15 minutes next week for a quick call? I’m flexible and can work around"
+Priya Nair,priya@healthbridge.co,HealthTech,healthbridge.co,ERROR,,failed,2026-05-05T17:47:53.691740,,"Model returned an empty response.
+Check your API key quota or try a different model via OPENAI_MODEL."
+Dani Kim,dani@retailstack.io,Retail Tech,retailstack.io,Boosting Retail Stack's pipeline with channel partners,"Hi Dani,
+
+I’ve been following Retail Stack’s push into AI‑driven inventory management — your recent rollout is exactly the kind of innovation that thrives with the right channel partners. At Acme Corp we’ve helped SaaS firms like yours lift qualified pipeline by 30% in just 90 days through targeted co‑selling. Could we hop on a 15‑minute call next week to explore how we might accelerate your growth?
+
+Best,
+Alex Chen
+Partnerships Manager, Acme Corp",generated,2026-05-05T17:48:01.613569,,
+Sam Okafor,sam@eduflow.com,EdTech,eduflow.com,ERROR,,failed,2026-05-05T17:48:09.290167,,"Model returned an empty response.
+Check your API key quota or try a different model via OPENAI_MODEL."

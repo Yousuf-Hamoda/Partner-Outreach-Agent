@@ -35,20 +35,19 @@ class SMTPConfig:
 class EmailSendError(Exception):
     pass
 
-
 class EmailSender:
-    """
-    Handles the full SMTP sending protocol for outreach emails.
+    # """
+    # Handles the full SMTP sending protocol for outreach emails.
 
-    Supports:
-    - Real sending via SMTP (Gmail, Outlook, etc.)
-    - Dry-run mode (prints what would be sent, no network calls)
+    # Supports:
+    # - Real sending via SMTP (Gmail, Outlook, etc.)
+    # - Dry-run mode (prints what would be sent, no network calls)
 
-    Usage:
-        config = SMTPConfig.from_env()
-        sender = EmailSender(company, config, dry_run=True)
-        sender.send(outreach_email)
-    """
+    # Usage:
+    #     config = SMTPConfig.from_env()
+    #     sender = EmailSender(company, config, dry_run=True)
+    #     sender.send(outreach_email)
+    # """
 
     def __init__(self, company: Company, config: SMTPConfig, dry_run: bool = True):
         self.company = company

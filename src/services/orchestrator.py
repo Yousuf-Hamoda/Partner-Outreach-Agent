@@ -6,12 +6,10 @@ from services.email_sender import EmailSender
 
 
 class OutreachOrchestrator:
-    """
-    Coordinates the full outreach pipeline:
-      1. Generate emails for each partner (via OpenAI)
-      2. Preview each email in the terminal
-      3. Optionally send via SMTP
-    """
+    # Coordinates the full outreach pipeline:
+    #   1. Generate emails for each partner (via OpenAI)
+    #   2. Preview each email in the terminal
+    #   3. Optionally send via SMTP
 
     RATE_LIMIT_DELAY = 0.5  # seconds between API calls
 

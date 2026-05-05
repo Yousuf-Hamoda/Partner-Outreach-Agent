@@ -1,0 +1,11 @@
+name,email,industry,website,subject,body,status,generated_at,sent_at,error
+Lena Torres,lena@growthloop.io,B2B SaaS,growthloop.io,ERROR,,failed,2026-05-05T17:41:05.567990,,"Failed to parse model response as JSON: Expecting value: line 1 column 1 (char 0)
+Raw: "
+Marcus Webb,marcus@finflux.com,Fintech,finflux.com,ERROR,,failed,2026-05-05T17:41:06.535094,,"Failed to parse model response as JSON: Expecting value: line 1 column 1 (char 0)
+Raw: "
+Priya Nair,priya@healthbridge.co,HealthTech,healthbridge.co,ERROR,,failed,2026-05-05T17:41:14.335624,,"Failed to parse model response as JSON: Expecting value: line 1 column 1 (char 0)
+Raw: "
+Dani Kim,dani@retailstack.io,Retail Tech,retailstack.io,ERROR,,failed,2026-05-05T17:41:20.889181,,"Failed to parse model response as JSON: Expecting value: line 1 column 1 (char 0)
+Raw: "
+Sam Okafor,sam@eduflow.com,EdTech,eduflow.com,ERROR,,failed,2026-05-05T17:41:31.256704,,"Failed to parse model response as JSON: Expecting value: line 1 column 1 (char 0)
+Raw: "

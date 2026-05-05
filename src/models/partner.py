@@ -8,7 +8,6 @@ class EmailStatus(Enum):
     SENT = "sent"
     FAILED = "failed"
 
-
 @dataclass
 class Company:
     name: str

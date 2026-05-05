@@ -7,6 +7,8 @@ AI-powered outreach agent that reads a CSV of potential partners and drafts pers
 ```bash
 pip install -r requirements.txt
 export OPENAI_API_KEY="sk-..."
+export OPENAI_BASE_URL="https://api.openai.com/v1"
+export OPENAI_MODEL="gpt-4o"
 ```
 
 ## Usage

@@ -1,22 +1,3 @@
-#!/usr/bin/env python3
-"""
-Partner Outreach Agent — entry point
-=====================================
-
-Usage:
-    python main.py                             # sample data, dry-run, no send
-    python main.py --csv partners.csv          # load from CSV
-    python main.py --csv partners.csv --send   # actually send via SMTP
-    python main.py --output my_results.csv     # custom output path
-
-Environment variables:
-    OPENAI_API_KEY   — required
-    SMTP_HOST        — default: smtp.gmail.com
-    SMTP_PORT        — default: 587
-    SMTP_USERNAME    — required if --send
-    SMTP_PASSWORD    — required if --send (use an App Password for Gmail)
-"""
-
 import argparse
 import sys
 
@@ -25,7 +6,7 @@ from services import EmailGenerator, EmailSender, SMTPConfig, OutreachOrchestrat
 from utils import load_partners, CSVExporter
 
 
-# ── Your company configuration ────────────────────────────────────────────────
+# Company Configuration
 
 MY_COMPANY = Company(
     name="Acme Corp",
@@ -35,11 +16,7 @@ MY_COMPANY = Company(
     value_proposition=(
         "We help SaaS companies grow revenue through channel partnerships — "
         "our partners see an average 30% lift in qualified pipeline within 90 days."
-    ),
-)
-
-# ─────────────────────────────────────────────────────────────────────────────
-
+    ),)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
