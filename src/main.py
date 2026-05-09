@@ -1,12 +1,37 @@
+#!/usr/bin/env python3
+"""
+Partner Outreach Agent — entry point
+=====================================
+
+Usage:
+    python main.py                             # sample data, dry-run, no send
+    python main.py --csv partners.csv          # load from CSV
+    python main.py --csv partners.csv --send   # actually send via SMTP
+    python main.py --output my_results.csv     # custom output path
+
+Environment variables:
+    OPENAI_API_KEY   — required
+    SMTP_HOST        — default: smtp.gmail.com
+    SMTP_PORT        — default: 587
+    SMTP_USERNAME    — required if --send
+    SMTP_PASSWORD    — required if --send (use an App Password for Gmail)
+"""
+
 import argparse
 import sys
 
 from models import Company
-from services import EmailGenerator, EmailSender, SMTPConfig, OutreachOrchestrator
+from services import (
+    EmailGenerator,
+    LangChainEmailGenerator,
+    EmailSender,
+    SMTPConfig,
+    OutreachOrchestrator,
+)
 from utils import load_partners, CSVExporter
 
 
-# Company Configuration
+# ── Your company configuration ────────────────────────────────────────────────
 
 MY_COMPANY = Company(
     name="Acme Corp",
@@ -16,7 +41,11 @@ MY_COMPANY = Company(
     value_proposition=(
         "We help SaaS companies grow revenue through channel partnerships — "
         "our partners see an average 30% lift in qualified pipeline within 90 days."
-    ),)
+    ),
+)
+
+# ─────────────────────────────────────────────────────────────────────────────
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -28,6 +57,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", help="Path for results CSV (default: timestamped)")
     parser.add_argument("--send",   action="store_true", help="Send emails via SMTP (default: dry-run)")
     parser.add_argument("--quiet",  action="store_true", help="Suppress email previews")
+    parser.add_argument(
+        "--use-langchain",
+        action="store_true",
+        help="Use LangChain email generator instead of raw OpenAI client",
+    )
     return parser.parse_args()
 
 
@@ -38,7 +72,12 @@ def main():
     partners = load_partners(args.csv)
 
     # 2. Set up services
-    generator = EmailGenerator(company=MY_COMPANY)
+    if args.use_langchain:
+        print("  Using LangChain email generator")
+        generator = LangChainEmailGenerator(company=MY_COMPANY)
+    else:
+        print("  Using pure OpenAI client email generator")
+        generator = EmailGenerator(company=MY_COMPANY)
 
     smtp_config = SMTPConfig.from_env()
     sender = EmailSender(
