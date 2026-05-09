@@ -17,6 +17,9 @@ export OPENAI_MODEL="gpt-4o"
 # Dry-run with built-in sample data (no emails sent)
 python main.py
 
+# Use LangChain instead of raw OpenAI client
+python main.py --use-langchai
+
 # Your own CSV, still dry-run
 python main.py --csv partners.csv
 
@@ -27,7 +30,19 @@ python main.py --csv partners.csv --send
 
 # Custom output file
 python main.py --csv partners.csv --output my_results.csv
+
+# LangChain + send mode
+python main.py --csv partners.csv --use-langchain --send
 ```
+
+## Email generation backends
+ 
+The agent supports two backends for email generation:
+ 
+| Backend | Flag | Description |
+|---------|------|-------------|
+| **Pure OpenAI** | (default) | Raw `openai` Python client with manual prompt building and JSON parsing |
+| **LangChain** | `--use-langchain` | Uses LangChain's `ChatOpenAI` + prompt templates + structured output parser |
 
 ## Input CSV format
 
