@@ -1,38 +1,45 @@
 # Partner Outreach Agent
 
-AI-powered outreach agent that reads a CSV of potential partners and drafts personalized emails using GPT-4o.
+A Python CLI that reads a CSV of potential partners and drafts a personalized outreach email for each one with any OpenAI-compatible model. It runs as a dry run by default and only sends over SMTP when you pass `--send`.
+
+- **Two interchangeable backends:** the raw `openai` client, or a LangChain chain with a Pydantic output schema
+- **Retries:** each email is retried up to 3 times with exponential backoff when the model returns malformed or truncated JSON
+- **Output:** a CSV recording the subject, body, status, timestamps, and any error for every partner
 
 ## Setup
 
 ```bash
 pip install -r requirements.txt
 export OPENAI_API_KEY="sk-..."
+# Optional: these default to OpenRouter and nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
 export OPENAI_BASE_URL="https://api.openai.com/v1"
 export OPENAI_MODEL="gpt-4o"
 ```
+
+Any OpenAI-compatible endpoint works, including OpenAI, OpenRouter, or Ollama running locally (`http://localhost:11434/v1`).
 
 ## Usage
 
 ```bash
 # Dry-run with built-in sample data (no emails sent)
-python main.py
+python src/main.py
 
 # Use LangChain instead of raw OpenAI client
-python main.py --use-langchain
+python src/main.py --use-langchain
 
 # Your own CSV, still dry-run
-python main.py --csv partners.csv
+python src/main.py --csv partners.csv
 
 # Actually send via SMTP
 export SMTP_USERNAME="you@gmail.com"
 export SMTP_PASSWORD="your-app-password"   # Gmail: use an App Password
-python main.py --csv partners.csv --send
+python src/main.py --csv partners.csv --send
 
 # Custom output file
-python main.py --csv partners.csv --output my_results.csv
+python src/main.py --csv partners.csv --output my_results.csv
 
 # LangChain + send mode
-python main.py --csv partners.csv --use-langchain --send
+python src/main.py --csv partners.csv --use-langchain --send
 ```
 
 ## Email generation backends
@@ -55,7 +62,7 @@ The agent supports two backends for email generation:
 
 ## Configuration
 
-Edit the `MY_COMPANY` block at the top of `main.py`:
+Edit the `MY_COMPANY` block at the top of `src/main.py`:
 
 ```python
 MY_COMPANY = Company(
@@ -73,5 +80,5 @@ MY_COMPANY = Company(
 |----------------|------------------|--------------------------------|
 | `SMTP_HOST`     | smtp.gmail.com   |                                |
 | `SMTP_PORT`     | 587              | TLS port                       |
-| `SMTP_USERNAME` | —                | Required for `--send`          |
-| `SMTP_PASSWORD` | —                | Use a Gmail App Password       |
+| `SMTP_USERNAME` | none             | Required for `--send`          |
+| `SMTP_PASSWORD` | none             | Use a Gmail App Password       |
