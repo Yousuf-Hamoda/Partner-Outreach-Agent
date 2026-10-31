@@ -18,7 +18,7 @@ export OPENAI_MODEL="gpt-4o"
 python main.py
 
 # Use LangChain instead of raw OpenAI client
-python main.py --use-langchai
+python main.py --use-langchain
 
 # Your own CSV, still dry-run
 python main.py --csv partners.csv
